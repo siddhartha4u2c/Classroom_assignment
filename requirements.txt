@@ -11,6 +11,5 @@ gunicorn==21.2.0
 itsdangerous==2.2.0
 packaging==26.0
 sqlalchemy>=2.0.16
-psycopg[binary]==3.1.11  # <--- updated driver
+psycopg[binary]==3.3.2    # <-- use a recent available version
 typing-extensions==4.15.0
-

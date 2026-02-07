@@ -11,7 +11,7 @@ def _database_uri():
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = _database_uri()
+    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg://user:password@host:port/dbname"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16 MB max file size

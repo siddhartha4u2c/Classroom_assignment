@@ -38,3 +38,4 @@ Data is stored in `classroom.db` (SQLite). Uploaded files are saved in the `uplo
 ## Deploy globally
 
 To host the app on the internet so anyone can access it, see **[DEPLOYMENT.md](DEPLOYMENT.md)** for step-by-step instructions (Render, Railway, or your own server).
+Available on https://classroom-assignment-whg1.onrender.com/login

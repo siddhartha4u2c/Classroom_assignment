@@ -6,9 +6,6 @@ from flask_login import LoginManager, current_user
 from config import Config
 from models import db, User, Assignment, Submission
 
-from flask_sqlalchemy import SQLAlchemy
-
-# app.py
 from flask import Flask
 from config import Config
 from extensions import db  # import the single db instance

@@ -12,16 +12,13 @@
 <body>
   <header class="site-header">
     <a href="{{ url_for('index') }}" class="logo">EduRoom</a>
+    {% if current_user.is_authenticated %}
     <nav>
-      {% if current_user.is_authenticated %}
-        <span class="user-name">{{ current_user.name }} ({{ current_user.role }})</span>
-        <a href="{{ url_for('logout') }}" class="btn btn-ghost">Log out</a>
-      {% else %}
-        <a href="{{ url_for('login') }}" class="btn btn-ghost">Log in</a>
-        <a href="{{ url_for('register') }}" class="btn btn-primary">Register</a>
-      {% endif %}
-    </nav>
+      <span class="user-name">{{ current_user.name }} ({{ current_user.role }})</span>
+      <a href="{{ url_for('logout') }}" class="btn btn-ghost">Log out</a>
+    {% endif %}
   </header>
+
   <main class="main-content">
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
@@ -34,9 +31,11 @@
     {% endwith %}
     {% block content %}{% endblock %}
   </main>
+
   <footer class="site-footer">
     <p>EduRoom Classroom &copy; 2025</p>
   </footer>
+
   {% block scripts %}{% endblock %}
 </body>
 </html>

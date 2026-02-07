@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Student Dashboard{% endblock %}
+{% block content %}
+<h1 class="page-title">Assignments</h1>
+<p style="color: var(--text-muted); margin-bottom: 1.5rem;">View and submit your assignments here.</p>
+{% if assignments %}
+<ul class="assignment-list">
+  {% for a in assignments %}
+  <li>
+    <div>
+      <h3>{{ a.title }}</h3>
+      <p class="assignment-meta">
+        Due {% if a.due_date %}{{ a.due_date.strftime('%b %d, %Y %H:%M') }}{% else %}—{% endif %}
+        · Max {{ a.max_marks }} marks
+        {% if a.id in my_submission_ids %}
+          <span class="badge badge-submitted">Submitted</span>
+        {% else %}
+          <span class="badge badge-pending">Not submitted</span>
+        {% endif %}
+      </p>
+    </div>
+    <div class="assignment-actions">
+      <a href="{{ url_for('view_assignment', aid=a.id) }}" class="btn btn-primary btn-small">View</a>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<div class="card">
+  <div class="empty-state">
+    <p>No assignments available yet. Check back later.</p>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

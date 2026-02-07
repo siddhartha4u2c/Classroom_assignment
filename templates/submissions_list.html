@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Submissions – {{ assignment.title }}{% endblock %}
+{% block content %}
+<h1 class="page-title">Submissions: {{ assignment.title }}</h1>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+  <a href="{{ url_for('teacher_dashboard') }}" class="file-link">← Back to assignments</a>
+</p>
+<div class="card">
+  {% if submissions %}
+  <table class="submissions-table">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Submitted</th>
+        <th>Status</th>
+        <th>Marks</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in submissions %}
+      <tr>
+        <td>{{ s.student.name }} ({{ s.student.email }})</td>
+        <td>{{ s.submitted_at.strftime('%b %d, %Y %H:%M') }}</td>
+        <td>
+          {% if s.marks is not none %}
+            <span class="badge badge-graded">Graded</span>
+          {% else %}
+            <span class="badge badge-pending">Pending</span>
+          {% endif %}
+        </td>
+        <td>{% if s.marks is not none %}{{ s.marks }} / {{ assignment.max_marks }}{% else %}—{% endif %}</td>
+        <td><a href="{{ url_for('evaluate_submission', sid=s.id) }}" class="btn btn-ghost btn-small">{% if s.marks is not none %}View / Re-grade{% else %}Evaluate{% endif %}</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <div class="empty-state">
+    <p>No submissions for this assignment yet.</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

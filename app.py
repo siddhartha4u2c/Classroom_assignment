@@ -9,8 +9,12 @@ from models import db, User, Assignment, Submission
 from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.config.from_object(Config)
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 db.init_app(app)
+
+from routes import *
+from models import *
+
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'

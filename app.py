@@ -9,7 +9,7 @@ from models import db, User, Assignment, Submission
 from flask import Flask
 from config import Config
 from extensions import db  # import the single db instance
-from routes import *
+
 from models import *
 app = Flask(__name__)
 app.config.from_object(Config)
